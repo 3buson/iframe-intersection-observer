@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Publisher page</title>
+  <style>
+    body {height:2000px; font-family:sans-serif;}
+    iframe {width:300px; height:600px; border:2px solid red; display:block; margin:1000px auto;}
+  </style>
+</head>
+<body>
+  <h1>Publisher Page</h1>
+  <p>Scroll down to see the ad container.</p>
+
+  <!-- “Google Ads” outer iframe -->
+  <iframe
+    src="http://127.0.0.1:8081/outer.html"
+    width="300"
+    height="600"
+    frameborder="0"
+    scrolling="no">
+  </iframe>
+
+  <h1>Bottom part of publisher Page</h1>
+  <p>Scroll Up to see the ad container.</p>
+
+  <script>
+    // For your own reference: observe outer iframe visibility
+    const ad = document.querySelector("iframe");
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        console.log("Publisher sees outer iframe visible =", e.intersectionRatio > 0,
+                    "intersectionRatio =", e.intersectionRatio.toFixed(2));
+      });
+    }, {threshold:[0,0.01]});
+    io.observe(ad);
+  </script>
+</body>
+</html>

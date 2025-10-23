@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Creative</title></head>
+<body style="margin:0;display:flex;align-items:center;justify-content:center;background:#eef;font-family:sans-serif;height:100%;">
+  <div>Creative iframe content</div>
+  <script>
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const visible = e.intersectionRatio > 0;
+        console.log("Creative (inner) sees visible =", visible,
+                    "intersectionRatio =", e.intersectionRatio.toFixed(2));
+      });
+    }, {threshold:[0,0.01]});
+    io.observe(document.body);
+  </script>
+</body>
+</html>
